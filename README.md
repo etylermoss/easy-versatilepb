@@ -66,7 +66,7 @@ $> sudo mv easy-versatilepb /opt/easy-versatilepb
 $> sudo ln -s /opt/easy-versatilepb/easy-versatilepb-build /usr/local/bin/
 $> sudo ln -s /opt/easy-versatilepb/easy-versatilepb-run /usr/local/bin/
 ```
-Use `~/.local/bin/` instead of `/usr/local/bin/` to install for just the current user (you may also need to place the installation directory somewhere other than /opt/ as well).
+Use `~/.local/bin/` instead of `/usr/local/bin/` to install for just the current user (you may also need to place the installation directory somewhere other than `/opt/` assuming limited permissions).
 
 ## SVC/SWI Codes
 
