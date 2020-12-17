@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+if [ "$1" = "--help" ] || [ "$1" = "-h" ] || [ "$#" -lt 1 ]; then
+    echo './easy-versatilepb-run INPUT'
+    echo '    -gdb )'
+    echo '        QEMU will listen for an incoming connection from gdb'
+    echo '        on TCP port 1234. Execution will not start until told'
+    echo '        to do so by GDB.'
+    echo '    -h, --help, * )'
+    echo '        Print usage information.'
+    exit
+fi
+
+input_1="$1"
+input_2="$2"
+input="$input_1"
+port='1234'
+gdb="-S -gdb tcp::$port"
+
+if [ "$#" -lt 1 ]; then
+    echo 'Please supply input ARM binary file.'
+    exit 1
+fi
+
+if [ "$input_1" != '-gdb' ] && [ -z "$input_2" ]; then
+    input="$input_1"
+    gdb=''
+elif [ "$input_1" = '-gdb' ] && [ -n "$input_2" ]; then
+    input="$input_2"
+elif [ "$input_2" = '-gdb' ]; then
+    input="$input_1"
+elif [ "$input_1" = '-gdb' ] && [ -z "$input_2" ]; then
+    echo 'Please supply input ARM binary file.' 1>&2
+    exit 1
+fi
+
+qemu-system-arm -M versatilepb $gdb -m 128M -nographic -no-reboot -audiodev none,id=none -kernel "$input"

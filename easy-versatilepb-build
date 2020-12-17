@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+if [ "$1" = "--help" ] || [ "$1" = "-h" ] || [ "$#" -lt 1 ]; then
+    echo './easy-versatilepb-build INPUT OUTPUT{.elf, .list, .bin}'
+    echo '    -h, --help, * )'
+    echo '        Print usage information.'
+    exit
+fi
+
 SCRIPT=$(realpath "$0")
 SCRIPT_PATH=$(dirname "$SCRIPT")
 LINKER="$SCRIPT_PATH/src/linker.ld"
