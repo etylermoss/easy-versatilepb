@@ -1,8 +1,6 @@
 # easy-versatilepb
 Package to easily compile C or ARM assembly, link, and run on a versatilepb QEMU machine. Includes code for read/write to UART0 with SVC/SWI, following handlers used by KoMoDo.
 
-Note: Code quality of the bash scripts is not great.
-
 ---
 
 ## How-to
@@ -28,10 +26,13 @@ $> ./easy-versatilepb-run main.bin
         to do so by GDB.
     -h, --help, * )
         Print usage information.
+    Note: If you do not halt execution (with SVC 2), QEMU will not quit as
+    the machine is still technically running, even if it has run out of
+    instructions. In the terminal, press CTRL+A, then type "x", to quit QEMU.
 ```
 
 ## Basic Hello World example
-See the file easy-versatilepb/example/main.s for a full working example. The key points are that the entry point file must contain a label `main`, and this label must be declared *global*, so it is accessible by the linker, by using `.global main`.
+See the file *easy-versatilepb/example/main.s* for a full working example. The key points are that the entry point file must contain a label `main`, and this label must be declared *global*, so it is accessible by the linker, by using `.global main`.
 ```assembly
 // easy-versatilepb/example/main.s
 
@@ -39,7 +40,7 @@ See the file easy-versatilepb/example/main.s for a full working example. The key
 
 .func
 main:
-        ...
+        ...     // Your assembly here
 .endfunc
 ```
 Using a C file as the entry point requires no special setup, though various library functions will not work due to the nature of being 'bare metal', e.g no <stdio.h>.
@@ -59,7 +60,7 @@ See [Migrating ARM syntax assembly code to GNU syntax](https://developer.arm.com
 
 ## SVC/SWI Codes
 
-Replicates functionality in Manchester KoMoDo
+Replicates functionality in Manchester KoMoDo, instead of *SWI* use *SVC* (the former being outdated, though still works).
 
 | Code 	| Operation                                                          	|
 |------	|--------------------------------------------------------------------	|

@@ -8,6 +8,9 @@ if [ "$1" = "--help" ] || [ "$1" = "-h" ] || [ "$#" -lt 1 ]; then
     echo '        to do so by GDB.'
     echo '    -h, --help, * )'
     echo '        Print usage information.'
+    echo '        Note: If you do not halt execution (with SVC 2), QEMU will not quit as'
+    echo '        the machine is still technically running, even if it has run out of'
+    echo '        instructions. In the terminal, press CTRL+A, then type "x", to quit QEMU.'
     exit
 fi
 
