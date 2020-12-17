@@ -58,6 +58,16 @@ hello:  .string "Hello World!"
 ```
 See [Migrating ARM syntax assembly code to GNU syntax](https://developer.arm.com/documentation/dui0742/g/Migrating-ARM-syntax-assembly-code-to-GNU-syntax/Overview-of-differences-between-ARM-and-GNU-syntax-assembly-code?lang=en).
 
+## Installation
+At the moment there is no installation script / file / package, however if you want to use this anywhere on the system you can use the following commands:
+```bash
+$> git git clone https://github.com/etylermoss/easy-versatilepb.git
+$> sudo mv easy-versatilepb /opt/easy-versatilepb
+$> sudo ln -s /opt/easy-versatilepb/easy-versatilepb-build /usr/local/bin/
+$> sudo ln -s /opt/easy-versatilepb/easy-versatilepb-run /usr/local/bin/
+```
+Use `~/.local/bin/` instead of `/usr/local/bin/` to install for just the current user (you may also need to place the installation directory somewhere other than /opt/ as well).
+
 ## SVC/SWI Codes
 
 Replicates functionality in Manchester KoMoDo, instead of *SWI* use *SVC* (the former being outdated, though still works).
