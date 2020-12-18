@@ -13,6 +13,15 @@ $> ./easy-versatilepb-run main.bin
 #  Hello World!
 ```
 
+## Dependencies
+In order to cross-compile for the ARM9 architecture / ARM926EJ-S CPU, you must have installed the following packages:
+| Name                                         	| Link(s)                                                                                                                                                             	|
+|----------------------------------------------	|---------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
+| arm-none-eabi-gcc                            	| [Arch Linux](https://www.archlinux.org/packages/community/x86_64/arm-none-eabi-gcc/), [Ubuntu 18.04](https://packages.ubuntu.com/bionic/gcc-arm-none-eabi)           	|
+| arm-none-eabi-binutils                       	| [Arch Linux](https://www.archlinux.org/packages/community/x86_64/arm-none-eabi-binutils/), [Ubuntu 18.04](https://packages.ubuntu.com/bionic/binutils-arm-none-eabi) 	|
+| arm-none-eabi-newlib                         	| [Arch Linux](https://www.archlinux.org/packages/community/x86_64/arm-none-eabi-newlib/), [Ubuntu 18.04](https://packages.ubuntu.com/bionic/libnewlib-arm-none-eabi)  	|
+| arm-none-eabi-gdb / gdb-multiarch (optional) 	| [Arch Linux](https://www.archlinux.org/packages/community/x86_64/arm-none-eabi-gdb/), [Ubuntu 18.04](https://packages.ubuntu.com/bionic/gdb-multiarch)               	|
+
 ## Full arguments
 ```txt
 ./easy-versatilepb-build INPUT OUTPUT{.elf, .list, .bin}
