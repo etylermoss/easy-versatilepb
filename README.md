@@ -7,7 +7,7 @@ Package to easily compile C or ARM assembly, link, and run on a versatilepb QEMU
 ```bash
 $> git clone https://github.com/etylermoss/easy-versatilepb.git
 $> cd easy-versatilepb
-$> ./easy-versatilepb-build example/main.s main.bin
+$> ./easy-versatilepb-build examples/main.s main.bin
 $> ./easy-versatilepb-run main.bin
 
 #  Hello World!
@@ -41,9 +41,9 @@ In order to cross-compile for the ARM9 architecture / ARM926EJ-S CPU, you must h
 ```
 
 ## Basic Hello World example
-See the file *easy-versatilepb/example/main.s* for a full working example. The key points are that the entry point file must contain a label `main`, and this label must be declared *global*, so it is accessible by the linker, by using `.global main`.
+See the file *easy-versatilepb/examples/main.s* for a full working example. The key points are that the entry point file must contain a label `main`, and this label must be declared *global*, so it is accessible by the linker, by using `.global main`.
 ```assembly
-// easy-versatilepb/example/main.s
+// easy-versatilepb/examples/main.s
 
 .global main
 
