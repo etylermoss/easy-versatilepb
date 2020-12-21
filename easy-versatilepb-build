@@ -45,7 +45,7 @@ case "$inputfile_ext" in
         ( echo "Could not compile input file '$inputfile'" 1>&2; false ) || clean_exit 3
         ;;
     s)
-        arm-none-eabi-as --warn --fatal-warnings -mcpu="$mcpu" "$inputfile" -o "$temp_dir/input.o" || \
+        arm-none-eabi-as --warn --fatal-warnings -g -mcpu="$mcpu" "$inputfile" -o "$temp_dir/input.o" || \
         ( echo "Could not assemble input file '$inputfile'" 1>&2; false ) || clean_exit 3
         ;;
     *)
@@ -53,8 +53,8 @@ case "$inputfile_ext" in
         clean_exit 4
 esac
 
-arm-none-eabi-as --warn --fatal-warnings -mcpu="$mcpu" "$BOOTSTRAP" -o "$temp_dir/bootstrap.o" && \
-arm-none-eabi-gcc -c -Wall -O2 -nostdlib -nostartfiles -ffreestanding -mcpu="$mcpu" "$SVC_HANDLER" -o "$temp_dir/svc_handler.o" && \
+arm-none-eabi-as --warn --fatal-warnings -g -mcpu="$mcpu" "$BOOTSTRAP" -o "$temp_dir/bootstrap.o" && \
+arm-none-eabi-gcc -c -Wall -O2 -nostdlib -nostartfiles -ffreestanding -g -mcpu="$mcpu" "$SVC_HANDLER" -o "$temp_dir/svc_handler.o" && \
 arm-none-eabi-ld "$temp_dir/bootstrap.o" "$temp_dir/svc_handler.o" "$temp_dir/input.o" -T "$LINKER" -o "$temp_dir/$inputfile_base.elf" && \
 arm-none-eabi-objdump -D "$temp_dir/$inputfile_base.elf" > "$temp_dir/$inputfile_base.list" && \
 arm-none-eabi-objcopy "$temp_dir/$inputfile_base.elf" -O binary "$temp_dir/$inputfile_base.bin" || \
