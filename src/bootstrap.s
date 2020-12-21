@@ -46,22 +46,20 @@ hang:
  */
 .func
 svc_top_handler:
-        SUB SP, SP, #4                  /* Create space for svc_handler() */
-        STMFD SP!, {R0-R12,LR}
+        STMFD SP!, {R0-R11,LR}
         
         LDR R0, [LR, #-4]               /* Get SVC instruction */
         BIC R0, #0xFF000000             /* Mask off SVC number */
         MOV R4, R0
         MOV R1, SP
         BL svc_handler
+        MOV R5, R0
 
-        STR R0, [SP, #60]
+        LDMFD SP!, {R0}                 /* R4: SVC code, R5: svc_handler() */
         CMP R4, #1
+        MOVEQ R0, R5
 
-        LDMFD SP!, {R0-R12,LR}
-        LDREQ R0, [SP, #4]              /* If SVC 1, get char from local vars */
-        ADD SP, SP, #4
-        BX LR
+        LDMFD SP!, {R1-R11,PC}^
 .endfunc
 
 /** halt: args(void) returns(void)
